@@ -11,11 +11,6 @@ We will begin by evaluating the needs of our target user group, neuroscience stu
 
 Tasks:
 - [ ] Contact relevant Montreal-based organizations to ask if they're planning to do a similar survey, and to ask if they want to collaborate
-  - BrainHack School
-  - BrainHack Global - Montreal chapter
-  - Open Scince UMontreal
-  - Tanenbaum Open Science Initiative
-  - Healthy Brains for Healthy Lives
 - [ ] Design survey
 - [ ] Test survey
 - [ ] Administer survey
@@ -47,13 +42,6 @@ It is important to us that we obtain funding to hire Teaching Assistants to host
 
 Tasks:
 - [ ] Create list of existing organizations who might contribute funding if we contact them. E.g.:
-  - BrainHack
-  - Tanenbaum Open Science Initiative
-  - Canadian Open Science Platform
-  - Healthy Brains for Healthy Lives
-  - Open Science Special Interest Group in the Organization for Human Brain Mapping
-  - 
-
 - [ ] Create list of relevant official funding opportunities that we might apply for. E.g.:
   - example
 
