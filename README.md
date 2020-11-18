@@ -1,6 +1,6 @@
 # Open Science Office Hours (OSOH)
 
-Hello! 👋 Welcome to OSOH website! Note that this site is under construction. 
+Hello 👋 Welcome to OSOH!
 
 ## Vision
 Open Science Office Hours (OSOH) is an online space where **students can get regular help making their research more open**. Many grad students learn open-science skills at short events like summer schools and hackathons. But they may not have continuous in-lab support for using what they learn in their everyday research. We hope to support such students and integrate them into the open-science community so they feel empowered to do open science.
