@@ -38,41 +38,43 @@ warnings.filterwarnings("ignore")
 # ## Load the survey results
 # And delete the pilot data.
 #
-# We display the first row, with the column names. You'll see that this person filled it out in French, so there are NaN values for all the questions in English. 
+# We display the first row, with the column names. You'll see that this person filled it out in French, so there are NaN values for all the questions in English.
 #
 # If you scroll to the right, you can read all of the questions in the survey and see this participants' responses to the questions in French.
 
 # +
-# survey = pd.read_csv("Doing Open Science in Grad School (Responses) - Form Responses 1.csv", 
+# survey = pd.read_csv("Doing Open Science in Grad School (Responses) - Form Responses 1.csv",
 #                      dtype=str)
-survey = pd.read_csv("Doing Open Science in Grad School.csv", 
-                     dtype=str)
+survey = pd.read_csv("Doing Open Science in Grad School.csv", dtype=str)
 ##########################################
-# non_pilot_data = np.arange(7, len(survey))
-# survey = survey.iloc[non_pilot_data]
-# survey.reset_index(drop=True, inplace=True)
+non_pilot_data = np.arange(7, len(survey))
+survey = survey.iloc[non_pilot_data]
+survey.reset_index(drop=True, inplace=True)
 print("We have %d responses" % len(survey))
 
-pd.set_option('display.max_columns', None)
+pd.set_option("display.max_columns", None)
 survey.head(1)
 # -
 
 # # Before we analyze the data
 # ## Let's shorten the column names & combine the English and French answers
-# As you can see above, the column names are very long; they're the full questions that were asked in the survey. Also, participants had the option of completing the survey in English or French. 
+# As you can see above, the column names are very long; they're the full questions that were asked in the survey. Also, participants had the option of completing the survey in English or French.
 #
-# Here, we load a file that contains 
+# Here, we load a file that contains
 # - the variable name for each question
 # - the English and French versions of each question
 #
-# And we'll look at the first 4 rows. 
+# And we'll look at the first 4 rows.
 
-cols = pd.read_csv("survey_column_names_and_translations.csv", 
-                   index_col="variable_name", dtype=str)
+cols = pd.read_csv(
+    "survey_column_names_and_translations.csv",
+    index_col="variable_name",
+    dtype=str,
+)
 cols.head(4)
 
-# Now we'll use this information to convery the survey data into a simpler dataframe, with 
-# - variable names as columns (instead of the full questions), and 
+# Now we'll use this information to convery the survey data into a simpler dataframe, with
+# - variable names as columns (instead of the full questions), and
 # - the English and French responses combined into one column per question (instead of there being 2 columns per question).
 
 # +
@@ -80,10 +82,10 @@ df = pd.DataFrame(columns=list(cols.index))
 for col in list(cols.index):
     en, fr = cols.loc[col]
     df[col] = survey[en].fillna(survey[fr])
-    
+
 ################################
-df["language"] = df["language"].fillna("English")
-df = df[df["language"] == "English"]
+# df["language"] = df["language"].fillna("English")
+# df = df[df["language"] == "English"]
 
 
 df.head(1)
@@ -107,10 +109,12 @@ uni_regexs = {
     "Columbia University": "[Cc]olumbia",
 }
 
+
 level_regexs = {
     "Undergrad": "[Uu]ndergrad|bac",
     "Masters": "[Mm]aster|[Mm]aitrise",
-    "PhD": "[Pp]h[Dd]|[Dd]octora",
+    "Early PhD": "student|début",
+    "Late PhD": "[Cc]andida",
     "Post-Doc": "([Pp]ost)([Dd]oc)",
     "Professor": "[Pp]rof",
 }
@@ -139,24 +143,24 @@ create_use_regexs = {
 
 # # Descriptive visualization
 #
-# Now we'll visualize the answers. 
+# Now we'll visualize the answers.
 
 # ## Participant background
-# Here, we start by making a function for plotting the data from questions about the participant's background. 
+# Here, we start by making a function for plotting the data from questions about the participant's background.
 
 # +
-matplotlib.rcParams.update({"font.size": 18})
+matplotlib.rcParams.update({"font.size": 20})
 df_cleaned = copy.deepcopy(df)
+
 
 def plot_categorical_column(
     column, regex_dict, ax, title=" ", drop_other=False, plot_kind="barh"
 ):
-    # if a cell contains a string that matches a regex item, 
+    # if a cell contains a string that matches a regex item,
     # replace the cell contents with the regex key
     column = column.dropna()
     for key, regex_str in regex_dict.items():
         column[column.str.contains(regex_str, regex=True)] = key
-            
 
     # drop responses that can't be categorized with any of the keys
     keys = regex_dict.keys()
@@ -166,18 +170,25 @@ def plot_categorical_column(
                 column = column.drop(i)
 
     # plot
-    column.value_counts(normalize=False).sort_values().plot(kind=plot_kind, ax=ax)
+    column.value_counts(normalize=False).sort_values().plot(
+        kind=plot_kind, ax=ax
+    )
     ax.set_title(title)
     ax.set_xlim((0, len(column)))
+    ax.spines["right"].set_visible(False)
+    ax.spines["top"].set_visible(False)
     return
 
+
 # +
-fig, axs = plt.subplots(2, 2, figsize=(20,10))
+fig, axs = plt.subplots(2, 2, figsize=(20, 12))
 
 df["language"].value_counts().plot(
     kind="barh", title="Language used in the survey", ax=axs[0, 0]
 )
 axs[0, 0].set_xlim((0, len(df)))
+axs[0, 0].spines["right"].set_visible(False)
+axs[0, 0].spines["top"].set_visible(False)
 
 plot_categorical_column(
     df["level"],
@@ -187,6 +198,11 @@ plot_categorical_column(
     plot_kind="barh",
 )
 
+# montreal_unis = [
+#     "McGill University",
+#     "Concordia University",
+#     "Université de Montréal",
+# ]
 plot_categorical_column(
     df["university"],
     uni_regexs,
@@ -204,7 +220,7 @@ plot_categorical_column(
 )
 
 plt.tight_layout()
-plt.savefig('figures/participants_background.png', bbox_inches="tight")
+plt.savefig("figures/participants_background.png", bbox_inches="tight")
 # -
 
 # ## Participants experience creating and using open-science objects
@@ -212,7 +228,7 @@ plt.savefig('figures/participants_background.png', bbox_inches="tight")
 # - the rows were the open-science objects
 # - the columns were their experience with them
 #
-# We'll visualize their answers as matrices as well. 
+# We'll visualize their answers as matrices as well.
 
 # first, let's replace the full answers with simpler keywords
 # E.g., "I don't know what this is" becomes "dont_know"
@@ -244,7 +260,7 @@ mat[create_use_cols] = mat[create_use_cols].astype(int)
 
 # -
 
-# ### Visualization
+# Visualization
 
 # +
 def ticklabels(var_list):
@@ -257,255 +273,227 @@ def ticklabels(var_list):
     ]
 
 
-matplotlib.rcParams.update({"font.size": 18})
-fig, axs = plt.subplots(1, 2, figsize=(22, 7))
+matplotlib.rcParams.update({"font.size": 24})
+fig, axs = plt.subplots(1, 2, figsize=(25, 10))
 
 create_cols = [col for col in list(mat.columns) if "create_" in col]
-create_keys = ["dont_know", "never_created", "have_created", "would_like_to_create"]
+create_keys = [
+    "dont_know",
+    "never_created",
+    "have_created",
+    "would_like_to_create",
+]
 sns.heatmap(
-    mat.loc[create_keys, create_cols].T, annot=True, vmax=len(df), ax=axs[0], cbar=False)
+    mat.loc[create_keys, create_cols].T,
+    annot=True,
+    vmax=len(df),
+    ax=axs[0],
+    cbar=False,
+)
 #     cbar_kws={'label': 'Number of participants'})
-axs[0].set_title("Experience CREATING open-science objects\n", fontsize=20)
+# axs[0].set_title("Experience CREATING open-science objects\n", fontsize=20)
 axs[0].set_yticklabels(ticklabels(create_cols))
-axs[0].set_xticklabels(ticklabels(create_keys), rotation=45)
+axs[0].set_xticklabels(ticklabels(create_keys), rotation=30)
 
 use_cols = [col for col in list(mat.columns) if "use_" in col]
 use_keys = ["dont_know", "never_used", "have_used", "would_like_to_use"]
-sns.heatmap(mat.loc[use_keys, use_cols].T, annot=True, vmax=len(df), ax=axs[1], cbar=False)
+sns.heatmap(
+    mat.loc[use_keys, use_cols].T,
+    annot=True,
+    vmax=len(df),
+    ax=axs[1],
+    cbar=False,
+)
 #             cbar_kws={'label': 'Number of participants'})
-axs[1].set_title("Experience USING open-science objects\n", fontsize=20)
+# axs[1].set_title("Experience USING open-science objects\n", fontsize=20)
 axs[1].set_yticklabels(ticklabels(use_cols))
-axs[1].set_xticklabels(ticklabels(use_keys), rotation=45)
+axs[1].set_xticklabels(ticklabels(use_keys), rotation=30)
 
 plt.tight_layout()
-extent = axs[0].get_tightbbox(fig.canvas.renderer).transformed(fig.dpi_scale_trans.inverted())
-fig.savefig('figures/experience_creating.png', bbox_inches=extent)
+extent = (
+    axs[0]
+    .get_tightbbox(fig.canvas.renderer)
+    .transformed(fig.dpi_scale_trans.inverted())
+)
+fig.savefig("figures/experience_creating.png", bbox_inches=extent)
 
-extent = axs[1].get_tightbbox(fig.canvas.renderer).transformed(fig.dpi_scale_trans.inverted())
-fig.savefig('figures/experience_using.png', bbox_inches=extent)
+extent = (
+    axs[1]
+    .get_tightbbox(fig.canvas.renderer)
+    .transformed(fig.dpi_scale_trans.inverted())
+)
+fig.savefig("figures/experience_using.png", bbox_inches=extent)
 
-plt.savefig('figures/experience.png', bbox_inches="tight")
+plt.savefig("figures/experience.png", bbox_inches="tight")
 # -
 
 # ## Barriers and desired resources
 
 # +
-# matplotlib.rcParams.update({"font.size": 18})
-
-
-# def plot_categorical_column_with_comments(
-#     column, regex_dict, ax, title=" ", plot_kind="barh", print_other_comments=True
-# ):
-
-#     # if a cell contains a string that matches a regex item, 
-#     # replace the cell contents with the regex key
-#     column = column.dropna()
-#     keys = list(regex_dict.keys())
-#     temp_df = pd.DataFrame(columns=keys)
-#     temp_df['original_answer'] = column
-#     for key, regex_str in regex_dict.items():
-#         temp_df[key] = temp_df['original_answer'].str.contains(regex_str, regex=True)
-#         column[column.str.contains(regex_str, regex=True)] = key
-# #         print(key, '\n', column, '\n-------------------------')
-
-#     for i, row in column.iteritems():
-#         for key in keys:
-#             row = row.replace(key, ' ').replace(key + ', ', ' ').replace(key + ' ', ' ').replace(' ' + key, ' ')
-#         temp_df.at[i, 'Other'] = row
-
-#     to_plot = temp_df[keys].sum(axis=0)
-
-#     # plot
-#     to_plot.sort_values().plot(kind=plot_kind, ax=ax)
-#     ax.set_title(title + '\n')
-#     ax.set_xlim((0, len(column)))
-#     ax.spines['right'].set_visible(False)
-#     ax.spines['top'].set_visible(False)
-
-#     # print other comments if desired
-#     if print_other_comments:
-#         other = []
-#         for s in list(temp_df["Other"]):
-#             if len(s) > 1:
-#                 other = other + textwrap.wrap(s, width=50) + ['\n']
-#         other = ['OTHER COMMENTS:\n\n'] + other
-#         other = '\n'.join(other)
-#         other = other.replace('\n\n', '\n')
-#         props = dict(boxstyle='round', facecolor='whitesmoke', alpha=0.7)
-#         ax.text(1, 0.2, other, fontsize=14, bbox=props,
-#                transform=plt.gcf().transFigure)
-# #     plt.tight_layout()
-# -
-
-
-
-# +
-# matplotlib.rcParams.update({"font.size": 18})
-
-# import re
-# def plot_categorical_column_with_comments(
-#     column, anwer_options, ax, title=" ", plot_kind="barh", print_other_comments=True
-# ):
-
-#     # if a cell contains a string that matches a regex item, 
-#     # replace the cell contents with the regex key
-#     column = column.dropna()
-#     keys = list(regex_dict.keys())
-#     temp_df = pd.DataFrame(columns=keys)
-#     temp_df['original_answer'] = column
-#     for key, [fr, en] in regex_dict.items():
-        
-#         temp_df[key] = temp_df['original_answer'].str.contains(fr)
-#         temp_df[key] = temp_df['original_answer'].str.contains(en)
-# #         column[temp_df['original_answer'].str.contains(regex_str, regex=True)] = key
-# #         print(key, '\n', column, '\n-------------------------')
-
-# #     all_regexs_in_one = '|'.join(list(regex_dict.values()))
-#     for i, row in column.iteritems():
-#         for item in row.split(';'):
-#             match = 0
-#             for regex in list(regex_dict.values()):
-#                 if re.search(regex, item):
-#                     match = 1
-#             if match > 0:
-#                 temp_df.at[i, 'Other'] = item
-# #                 print('COMMENT')
-# #                 print(item, '\n')
-
-#     to_plot = temp_df[keys].sum(axis=0)
-
-#     # plot
-#     to_plot.sort_values().plot(kind=plot_kind, ax=ax)
-#     ax.set_title(title + '\n')
-#     ax.set_xlim((0, len(column)))
-#     ax.spines['right'].set_visible(False)
-#     ax.spines['top'].set_visible(False)
-
-#     # print other comments if desired
-#     if print_other_comments:
-#         other = []
-#         comments = list(temp_df["Other"].dropna())
-#         for s in comments:
-#             other = other + textwrap.wrap(s, width=50) + ['\n']
-#         other = ['OTHER COMMENTS:\n\n'] + other
-#         other = '\n'.join(other)
-#         other = other.replace('\n\n', '\n')
-#         props = dict(boxstyle='round', facecolor='whitesmoke', alpha=0.7)
-#         ax.text(1, 0.2, other, fontsize=14, bbox=props,
-#                transform=plt.gcf().transFigure)
-# #     plt.tight_layout()
-# -
-
-"Limited skills - I don't have the skills to make my research more open (e.g., technical skills in data management or programming)"
-
-"Limited skills - I don't have the skills to make my research more open (e.g., technical skills in data management or programming)"
-
-"Limited skills - I don't have the skills to make my research more open (e.g., technical skills in data management or programming)"
-
-# +
 barriers_options = {
-    "Limited knowledge": ["Limited knowledge - I don't know how to make my resarch more open", "Connaissances limitées - Je ne sais pas comment je peux rendre ma recherche plus ouverte"],
-    "Limited skills": ["Limited skills - I don't have the skills to make my research more open (e.g., technical skills in data management or programming)", "Compétences limitées - Je n'ai pas les compétences nécessaires pour rendre ma recherche plus ouverte (par exemple, compétences techniques en gestion de données ou en programmation)"],
-    "Limited time": ["Limited time - I don't have time to learn/do open science", "Contrainte de temps - Je n'ai pas le temps d'apprendre ce qui est requis pour faire de la science ouverte"],
-    "Limited support": ["Limited support - My colleagues and/or supervisors don't think that open science is a priority", "Soutien limité - Mes collègues et/ou superviseurs ne pensent pas que la science ouverte soit une priorité"],
-    "Limited incentives": ["Limited incentives - I don't see any personal incentives to do open science", "Motivation limitées - Je ne vois aucune incitation personnelle à faire de la science ouverte"],
-    "Not convinced": ["Not convinced - I don't think that open science is important", "Pas convaincu.e - Je ne pense pas que la science ouverte soit importante/ je n'en comprends pas la pertience"],
+    "Limited knowledge": [
+        "Limited knowledge - I don't know how to make my resarch more open",
+        "Connaissances limitées - Je ne sais pas comment je peux rendre ma recherche plus ouverte",
+    ],
+    "Limited skills": [
+        "Limited skills - I don't have the skills to make my research more open (e.g., technical skills in data management or programming)",
+        "Compétences limitées - Je n'ai pas les compétences nécessaires pour rendre ma recherche plus ouverte (par exemple, compétences techniques en gestion de données ou en programmation)",
+    ],
+    "Limited time": [
+        "Limited time - I don't have time to learn/do open science",
+        "Contrainte de temps - Je n'ai pas le temps d'apprendre ce qui est requis pour faire de la science ouverte",
+    ],
+    "Limited support": [
+        "Limited support - My colleagues and/or supervisors don't think that open science is a priority",
+        "Soutien limité - Mes collègues et/ou superviseurs ne pensent pas que la science ouverte soit une priorité",
+    ],
+    "Limited incentives": [
+        "Limited incentives - I don't see any personal incentives to do open science",
+        "Motivation limitées - Je ne vois aucune incitation personnelle à faire de la science ouverte",
+    ],
+    "Not convinced": [
+        "Not convinced - I don't think that open science is important",
+        "Pas convaincu.e - Je ne pense pas que la science ouverte soit importante/ je n'en comprends pas la pertience",
+    ],
 }
 
 resources_options = {
-    "Resource list": ["Resource list - A list of open resources that I can go through on my own time", 
-                      "Liste de ressources - Une liste de ressources ouvertes pouvant être consultées lors de mes temps libres"],
-    "Tutorials": ["Tutorials - Short tutorials/discussions that I can attend online", 
-                  "Tutoriels - Petits tutoriels/discussions auxquels je peux assister en ligne"],
-    "Office hours": ["Office hours - Regular office hours where I can get 1-on-1 guidance for doing open science, considering my specific research, skills, and resources", 
-                     "Heures d'ouverture du bureau - Heures de bureau destinées à des fins d'encadrement/consultation pendant lesquelles je peux obtenir des conseils personnalisés pour faire de la science ouverte, en tenant compte de mes recherches, compétences et ressources spécifiques"],
+    "Resource list": [
+        "Resource list - A list of open resources that I can go through on my own time",
+        "Liste de ressources - Une liste de ressources ouvertes pouvant être consultées lors de mes temps libres",
+    ],
+    "Tutorials": [
+        "Tutorials - Short tutorials/discussions that I can attend online",
+        "Tutoriels - Petits tutoriels/discussions auxquels je peux assister en ligne",
+    ],
+    "Office hours": [
+        "Office hours - Regular office hours where I can get 1-on-1 guidance for doing open science, considering my specific research, skills, and resources",
+        "Heures d'ouverture du bureau - Heures de bureau destinées à des fins d'encadrement/consultation pendant lesquelles je peux obtenir des conseils personnalisés pour faire de la science ouverte, en tenant compte de mes recherches, compétences et ressources spécifiques",
+    ],
 }
 
 # +
-matplotlib.rcParams.update({"font.size": 18})
+matplotlib.rcParams.update({"font.size": 24})
 
-fig, ax = plt.subplots(1, 1, figsize=(7,5))
-
-column =    df["barriers"]
-answer_options =     barriers_options
-title="What barriers do you face when trying to do open science?"
-plot_kind="barh"
-print_other_comments=True
 
 def plot_categorical_column_with_comments(
-    column, answer_options, ax, title=" ", plot_kind="barh", print_other_comments=True
+    column,
+    answer_options,
+    ax,
+    title=" ",
+    plot_kind="barh",
+    print_other_comments=True,
 ):
 
-    # if a cell contains a string that matches a regex item, 
+    # if a cell contains a string that matches a regex item,
     # replace the cell contents with the regex key
     column = column.dropna()
     keys = list(answer_options.keys())
     temp_df = pd.DataFrame(columns=keys)
-    column = column.str.replace("Heures de disponibilité / ", "Heures d'ouverture du bureau - ")
-    temp_df['original_answer'] = column
+    column = column.str.replace(
+        "Heures de disponibilité / ", "Heures d'ouverture du bureau - "
+    )
+    temp_df["original_answer"] = column
     all_options = []
-    for key, [fr, en] in answer_options.items():
+    for key, [en, fr] in answer_options.items():
         all_options.append(fr)
         all_options.append(en)
-        temp_df[key] = temp_df['original_answer'].str.contains(fr)
-        temp_df[key] = temp_df[key] + temp_df['original_answer'].str.contains(en)
 
     for i, row in column.iteritems():
-        for item in row.split(';'):
+        for item in row.split(";"):
+            for key, [en, fr] in answer_options.items():
+                if item == en:
+                    temp_df.at[i, key] = True
+                if item == fr:
+                    temp_df.at[i, key] = True
             if item not in all_options:
-                temp_df.at[i, 'Other'] = item
-
+                temp_df.at[i, "Other"] = item
+    temp_df[keys] = temp_df[keys].fillna(False)
 
     # plot
     to_plot = temp_df[keys].sum(axis=0)
     to_plot.sort_values().plot(kind=plot_kind, ax=ax)
-    ax.set_title(title + '\n')
+    #     ax.set_title(title + '\n')
     ax.set_xlim((0, len(column)))
-    ax.spines['right'].set_visible(False)
-    ax.spines['top'].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["top"].set_visible(False)
+    ax.set_xlabel("Number of participants")
 
     # print other comments if desired
-    if print_other_comments:
-        other = []
-        comments = list(temp_df["Other"].dropna())
-        for s in comments:
-            other = other + textwrap.wrap(s, width=50) + ['\n']
-        other = ['OTHER COMMENTS:\n\n'] + other
-        other = '\n'.join(other)
-        other = other.replace('\n\n', '\n')
-        props = dict(boxstyle='round', facecolor='whitesmoke', alpha=0.7)
-        ax.text(1, 0.15, other, fontsize=14, bbox=props,
-               transform=plt.gcf().transFigure)
-    #     plt.tight_layout()
+    if "Other" in list(temp_df.columns):
+        if print_other_comments:
+            other = []
+            comments = list(temp_df["Other"].dropna())
+            for s in comments:
+                other = other + textwrap.wrap(s, width=70) + ["\n"]
+            other = ["OTHER COMMENTS:\n\n"] + other
+            other = "\n".join(other)
+            other = other.replace("\n\n", "\n")
+            props = dict(boxstyle="round", facecolor="whitesmoke", alpha=0.7)
+            ax.text(
+                1,
+                0.85,
+                other,
+                fontsize=24,
+                bbox=props,
+                transform=plt.gcf().transFigure,
+                verticalalignment="top",
+            )
+
 
 # +
-fig, ax = plt.subplots(1, 1, figsize=(7,6))
+fig, ax = plt.subplots(1, 1, figsize=(15, 9))
 plot_categorical_column_with_comments(
     column=df["barriers"],
     answer_options=barriers_options,
     ax=ax,
-    title="What barriers do you face when\ntrying to do open science?",
+    title="What barriers do you face when trying to do open science?",
     plot_kind="barh",
-    print_other_comments=True
+    print_other_comments=True,
 )
-fig.savefig('figures/barriers.png', bbox_inches = "tight")
+fig.savefig("figures/barriers.png", bbox_inches="tight")
 
-fig, ax = plt.subplots(1, 1, figsize=(7,5))
+fig, ax = plt.subplots(1, 1, figsize=(15, 9))
 plot_categorical_column_with_comments(
     df["resources_youd_like"],
     resources_options,
     ax=ax,
-    title="What would help you\nmake your research more open?",
-    plot_kind="barh", 
-    print_other_comments=True)
-fig.savefig('figures/resources_youd_like.png', bbox_inches="tight")
+    title="What would help you make your research more open?",
+    plot_kind="barh",
+    print_other_comments=True,
+)
+fig.savefig("figures/resources_youd_like.png", bbox_inches="tight")
 
 # -
 
 # ## Would you be interested in applying to host Open Science Office Hours?
 
+host_cols = ["host_paid", "host_volunteer"]
+host_options = {"No": "No|Non", "Maybe": "Maybe|Peut", "Yes": "Yes|Qui"}
+host_keys = list(host_options.keys())
+host_mat = pd.DataFrame(columns=host_cols, index=host_keys)
+for key, key_regex in host_options.items():
+    for col in host_cols:
+        host_mat.at[key, col] = (
+            df[col].str.contains(key_regex, regex=True).sum()
+        )
+host_mat[host_cols] = host_mat[host_cols].astype(int)
+
 # +
-#######################################################################
+matplotlib.rcParams.update({"font.size": 18})
+fig, ax = plt.subplots(figsize=(3, 3))
+
+sns.heatmap(host_mat.T, annot=True, vmax=len(df), ax=ax, cbar=False)
+ax.set_title(
+    "Would you be interested\nin applying to host\nOpen Science Office Hours?\n",
+    fontsize=20,
+)
+# ax.set_xticklabels(ticklabels(host_keys))
+ax.set_yticklabels(["As a paid\nteaching assistant", "As a volunteer"])
+plt.tight_layout()
+fig.savefig("figures/host.png", bbox_inches="tight")
+
+
 # -
 
 # ## Open-ended questions
@@ -532,10 +520,10 @@ def all_answers_wordcloud(column, title="", language="all"):
         max_font_size=50, max_words=100, background_color="white"
     ).generate(all_texts)
 
-    fig, ax = plt.subplots(figsize=(15, 10))
+    fig, ax = plt.subplots(figsize=(20, 10))
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
-    plt.title(title + "\n", fontsize=30)
+    #     plt.title(title + "\n", fontsize=40)
     plt.show()
     return fig, ax
 
@@ -547,14 +535,14 @@ fig, ax = all_answers_wordcloud(
     title='What do you think of when you hear the words "open science"?',
     language=language,
 )
-fig.savefig('figures/wc_first_thoughts.png')
+fig.savefig("figures/wc_first_thoughts.png", bbox_inches="tight")
 
 fig, ax = all_answers_wordcloud(
     df["learn_next"],
     title="What would you like to learn about open science?",
     language=language,
 )
-fig.savefig('figures/wc_learn_next.png')
+fig.savefig("figures/wc_learn_next.png", bbox_inches="tight")
 
 
 fig, ax = all_answers_wordcloud(
@@ -562,7 +550,7 @@ fig, ax = all_answers_wordcloud(
     title="If you do open science,\nwhat motivates you to do so?",
     language=language,
 )
-fig.savefig('figures/wc_motivation.png')
+fig.savefig("figures/wc_motivation.png", bbox_inches="tight")
 
 
 fig, ax = all_answers_wordcloud(
@@ -570,7 +558,7 @@ fig, ax = all_answers_wordcloud(
     title="If you do open science,\nwhat kinds of resources did you find most useful\nfor learning how to do open science?",
     language=language,
 )
-fig.savefig('figures/wc_resources_that_helped.png')
+fig.savefig("figures/wc_resources_that_helped.png", bbox_inches="tight")
 
 # -
 
