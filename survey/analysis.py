@@ -43,8 +43,6 @@ warnings.filterwarnings("ignore")
 # If you scroll to the right, you can read all of the questions in the survey and see this participants' responses to the questions in French.
 
 # +
-# survey = pd.read_csv("Doing Open Science in Grad School (Responses) - Form Responses 1.csv",
-#                      dtype=str)
 survey = pd.read_csv("Doing Open Science in Grad School.csv", dtype=str)
 ##########################################
 non_pilot_data = np.arange(7, len(survey))
@@ -161,6 +159,7 @@ def plot_categorical_column(
     column = column.dropna()
     for key, regex_str in regex_dict.items():
         column[column.str.contains(regex_str, regex=True)] = key
+    #         df_cleaned[column.str.contains(regex_str, regex=True)] = key
 
     # drop responses that can't be categorized with any of the keys
     keys = regex_dict.keys()
@@ -170,23 +169,26 @@ def plot_categorical_column(
                 column = column.drop(i)
 
     # plot
-    column.value_counts(normalize=False).sort_values().plot(
+    column.value_counts(normalize=True).sort_values().plot(
         kind=plot_kind, ax=ax
     )
     ax.set_title(title)
-    ax.set_xlim((0, len(column)))
+    #     ax.set_xlim((0, 1))
+    ax.set_xticks([0.0, 0.5, 1.0])
+    ax.set_xticklabels([0, 50, 100])
     ax.spines["right"].set_visible(False)
     ax.spines["top"].set_visible(False)
-    return
 
 
 # +
-fig, axs = plt.subplots(2, 2, figsize=(20, 12))
+fig, axs = plt.subplots(2, 2, figsize=(27, 12))
 
-df["language"].value_counts().plot(
+df["language"].value_counts(normalize=True).plot(
     kind="barh", title="Language used in the survey", ax=axs[0, 0]
 )
-axs[0, 0].set_xlim((0, len(df)))
+axs[0, 0].set_xticks([0.0, 0.5, 1.0])
+axs[0, 0].set_xticklabels([0, 50, 100])
+# axs[0, 0].set_xlim((0, 1))
 axs[0, 0].spines["right"].set_visible(False)
 axs[0, 0].spines["top"].set_visible(False)
 
@@ -251,9 +253,13 @@ create_use_cols = [
 ]
 mat = pd.DataFrame(columns=create_use_cols, index=create_use_keys, dtype=int)
 
+n_participants = len(df_cleaned)
 for col in create_use_cols:
     for row in create_use_keys:
-        mat.at[row, col] = df_cleaned[col].str.contains(row).sum()
+        mat.at[row, col] = (
+            df_cleaned[col].str.contains(row).sum() / n_participants * 100
+        )
+
 
 mat[create_use_cols] = mat[create_use_cols].astype(int)
 
@@ -274,7 +280,11 @@ def ticklabels(var_list):
 
 
 matplotlib.rcParams.update({"font.size": 24})
-fig, axs = plt.subplots(1, 2, figsize=(25, 10))
+fig, axs = plt.subplots(1, 2, figsize=(27, 10))
+vmax = 100
+cmap = "viridis"
+cbar = True
+annot = True
 
 create_cols = [col for col in list(mat.columns) if "create_" in col]
 create_keys = [
@@ -285,29 +295,33 @@ create_keys = [
 ]
 sns.heatmap(
     mat.loc[create_keys, create_cols].T,
-    annot=True,
-    vmax=len(df),
+    annot=annot,
+    vmax=vmax,
     ax=axs[0],
-    cbar=False,
+    cbar=cbar,
+    cmap=cmap,
+    cbar_kws={"label": "% of participants"},
 )
 #     cbar_kws={'label': 'Number of participants'})
 # axs[0].set_title("Experience CREATING open-science objects\n", fontsize=20)
 axs[0].set_yticklabels(ticklabels(create_cols))
-axs[0].set_xticklabels(ticklabels(create_keys), rotation=30)
+axs[0].set_xticklabels(ticklabels(create_keys), rotation=40, ha="right")
 
 use_cols = [col for col in list(mat.columns) if "use_" in col]
 use_keys = ["dont_know", "never_used", "have_used", "would_like_to_use"]
 sns.heatmap(
     mat.loc[use_keys, use_cols].T,
-    annot=True,
-    vmax=len(df),
+    annot=annot,
+    vmax=vmax,
     ax=axs[1],
-    cbar=False,
+    cbar=cbar,
+    cmap=cmap,
+    cbar_kws={"label": "% of participants"},
 )
 #             cbar_kws={'label': 'Number of participants'})
 # axs[1].set_title("Experience USING open-science objects\n", fontsize=20)
 axs[1].set_yticklabels(ticklabels(use_cols))
-axs[1].set_xticklabels(ticklabels(use_keys), rotation=30)
+axs[1].set_xticklabels(ticklabels(use_keys), rotation=40, ha="right")
 
 plt.tight_layout()
 extent = (
@@ -325,6 +339,47 @@ extent = (
 fig.savefig("figures/experience_using.png", bbox_inches=extent)
 
 plt.savefig("figures/experience.png", bbox_inches="tight")
+# -
+
+# ## Clustering types of participants
+
+# +
+# getting the data in the right format
+to_encode = df_cleaned[create_use_cols].dropna()
+
+one_hot_df = pd.DataFrame()
+for column in list(to_encode.columns):
+    for option in create_use_keys:
+        one_hot_column = column + "__" + option
+        for i_row, row in to_encode.iterrows():
+            if option in row[column]:
+                one_hot_df.at[i_row, one_hot_column] = True
+
+one_hot_df = one_hot_df.fillna(False)
+X = one_hot_df.to_numpy()
+
+# +
+import numpy as np
+from sklearn.decomposition import PCA
+
+n_components = 2
+pca = PCA(n_components=n_components)
+X = one_hot_df.to_numpy()
+principalComponents = pca.fit_transform(X)
+
+print("Explained variance ratio: ", pca.explained_variance_ratio_)
+
+print("Singular values: ", pca.singular_values_)
+
+pca_df = pd.DataFrame(data=principalComponents, columns=["PC 1", "PC 2"])
+
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.set_xlabel("PC 1")
+ax.set_ylabel("PC 2")
+ax.set_title("%d-component PCA" % n_components)
+ax.scatter(
+    pca_df["PC 1"], pca_df["PC 2"],
+)
 # -
 
 # ## Barriers and desired resources
@@ -411,13 +466,13 @@ def plot_categorical_column_with_comments(
     temp_df[keys] = temp_df[keys].fillna(False)
 
     # plot
-    to_plot = temp_df[keys].sum(axis=0)
+    to_plot = temp_df[keys].sum(axis=0) / len(temp_df) * 100
     to_plot.sort_values().plot(kind=plot_kind, ax=ax)
     #     ax.set_title(title + '\n')
-    ax.set_xlim((0, len(column)))
+    ax.set_xlim((0, 100))
     ax.spines["right"].set_visible(False)
     ax.spines["top"].set_visible(False)
-    ax.set_xlabel("Number of participants")
+    ax.set_xlabel("% of participants")
 
     # print other comments if desired
     if "Other" in list(temp_df.columns):
@@ -476,6 +531,8 @@ for key, key_regex in host_options.items():
     for col in host_cols:
         host_mat.at[key, col] = (
             df[col].str.contains(key_regex, regex=True).sum()
+            / n_participants
+            * 100
         )
 host_mat[host_cols] = host_mat[host_cols].astype(int)
 
@@ -483,12 +540,19 @@ host_mat[host_cols] = host_mat[host_cols].astype(int)
 matplotlib.rcParams.update({"font.size": 18})
 fig, ax = plt.subplots(figsize=(3, 3))
 
-sns.heatmap(host_mat.T, annot=True, vmax=len(df), ax=ax, cbar=False)
+sns.heatmap(
+    host_mat.T,
+    annot=True,
+    vmax=vmax,
+    ax=ax,
+    cbar=True,
+    cmap=cmap,
+    cbar_kws={"label": "% of participants"},
+)
 ax.set_title(
     "Would you be interested\nin applying to host\nOpen Science Office Hours?\n",
     fontsize=20,
 )
-# ax.set_xticklabels(ticklabels(host_keys))
 ax.set_yticklabels(["As a paid\nteaching assistant", "As a volunteer"])
 plt.tight_layout()
 fig.savefig("figures/host.png", bbox_inches="tight")
@@ -559,6 +623,3 @@ fig, ax = all_answers_wordcloud(
     language=language,
 )
 fig.savefig("figures/wc_resources_that_helped.png", bbox_inches="tight")
-
-# -
-
