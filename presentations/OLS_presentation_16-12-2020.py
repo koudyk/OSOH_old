@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # ---
 # jupyter:
 #   jupytext:
@@ -43,12 +44,6 @@
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story1.png)
 
-# + [markdown] slideshow={"slide_type": "skip"}
-# ![](images/story2.png)
-
-# + [markdown] slideshow={"slide_type": "skip"}
-# ![](images/story3.png)
-
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story4_corr2.png)
 
@@ -69,12 +64,6 @@
 #
 # OSOH is an online space where grad students can get regular help making their research more open.
 
-# + [markdown] slideshow={"slide_type": "subslide"}
-# #### inviting students to the
-# ## Open science buffet
-# ![](images/open_science_buffet.png)
-
-
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Milestones
 #
@@ -87,56 +76,37 @@
 # # Survey
 # ![](images/survey_screenshot.png)
 
-# + [markdown] slideshow={"slide_type": "skip"}
-# ![](images/survey_on_twitter.png)
+# + [markdown] slideshow={"slide_type": "fragment"}
+# ### Limitations
+# - Small sample (34)
+# - Biased sample?
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # What do you think of when you hear the words "open science"?
 # ![](../survey/figures/wc_first_thoughts.png)
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# <h2> <img src="images/star.png"
-#   width="50"
-#   height="50"
+# <h5> <img src="images/star.png"
+#   width="20"
+#   height="20"
 #   style="float:left;">
-#     Narrow view of open science
+#     Narrow view of open science?
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# ![](images/open_science_buffet.png)
-
-# + [markdown] slideshow={"slide_type": "skip"}
-# # Experience creating open-science objects
-# ![](../survey/figures/experience_creating.png)
-
-# + [markdown] slideshow={"slide_type": "subslide"}
-# ## Experience using and creating open-science objects
-# ![](../survey/figures/experience.png)
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h2> <img src="images/star.png"
-#   width="50"
-#   height="50"
-#   style="float:left;">
-#     Most are using open science; ~half haven't created it and want to
-
-# + [markdown] slideshow={"slide_type": "skip"}
-# ## Overlap between users and creators of open science
-# ![](../survey/figures/intersections_use_create.png)
-
-# + [markdown] slideshow={"slide_type": "subslide"}
-# ## What barriers do you face when trying to do open science? 
+# ## What barriers do you face when trying to do open science?
 # ![](../survey/figures/barriers.png)
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# <h4> <img src="images/star.png"
-#   width="30"
-#   height="50"
+# <h5> <img src="images/star.png"
+#   width="20"
+#   height="20"
 #   style="float:left;">
 #     Almost no one is not convinced
-#     
-# <h4> <img src="images/star.png"
-#   width="30"
-#   height="50"
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# <h5> <img src="images/star.png"
+#   width="20"
+#   height="20"
 #   style="float:left;">
 #     Many have limited supported
 
@@ -148,24 +118,26 @@
 # ### If you do open science, what kinds of resources did you find most useful?
 # ![](../survey/figures/wc_resources_that_helped.png)
 # + [markdown] slideshow={"slide_type": "fragment"}
-# <h4> <img src="images/star.png"
-#   width="30"
+# <h6> <img src="images/star.png"
+#   width="20"
 #   height="30"
 #   style="float:left;">
-#     They want resources and resources are out there; what's the barrier?
+#     They want resources, and resources are out there. What's the barrier?
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# # Summary of needs
-# Based on the survey result
-# - Narrow view of open science (data, code)
-# - Desire to create open science
-# - Greatest barriers: limited skills, support, and time
-# - Almost no one is not convinced that open science is important
-# - They want resources and resources are out there; what's the barrier there?
-#
-# ### Limitations
-# - Small sample
-# - Biased sample
+# # Potential role of OSOH in light of the survey
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# - Expand the view of open science
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# - Offer support that they might not get in-lab
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# - Link students to resources
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# ![](images/open_science_buffet.png)
 
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Milestones
@@ -176,7 +148,6 @@
 # - Request funding
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# # GitHub
 # ![](images/github.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
@@ -193,8 +164,6 @@
 # - Request funding
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# # Collaborators
-# People who have helped so far are from:
 # ![](images/collaborators.png)
 
 # + [markdown] slideshow={"slide_type": "slide"}
@@ -211,13 +180,10 @@
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Level the playing field for TA applicants
 
-# + [markdown] slideshow={"slide_type": "fragment"}
-# ![](../survey/figures/host.png)
-
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ## What's a reasonable hourly TA wage?
 # ![](../survey/figures/ta_wages.png)
-# Info from www.glassdoor.ca 
+# Info from www.glassdoor.ca
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ## Budget projections
@@ -231,14 +197,14 @@
 # ### For overhead costs
 # - McGill PGSS Library Improvement Fund
 # - McGill Alumni Association student sponsorship program (\\$250 to \\$750)
-# - BrainHack School
-# - Tanenbaum Open Science Initiative
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ### For collaborative events
-# - **Graduate Student Association for Neurocience (McGill)**
+# - BrainHack School
+# - Tanenbaum Open Science Initiative
+# - Graduate Student Association for Neurocience (McGill)
 # - Open Science UMontreal
-# - UNIQUE ------------------------------------------------------------------
+# - Unifying Neuroscience and Artificial Intelligence - Québec
 # - Healthy Brains for Healthy Lives (McGill)
 
 # + [markdown] slideshow={"slide_type": "slide"}
@@ -247,20 +213,28 @@
 # - Revisit vision in light of the survey
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# **If we go ahead with the original idea of office hours...**
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Continue looking for funding
+# - Continue looking for funding 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Finish website
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Find TAs
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Develop leadership/teaching skills
-#   - ReproNim/INCF Training Fellowship ("Train-the-Trainor")
-#   - Instructor Training from Software Carpentries
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Start OSOH
 #   - July 2021 (after BrainHack School & OHBM Hackathon)
+# + [markdown] slideshow={"slide_type": "slide"}
+# # Let's change this story
+
+# + [markdown] slideshow={"slide_type": "subslide"}
+# ![](images/story5.png)
+
+# + [markdown] slideshow={"slide_type": "subslide"}
+# ![](images/story6b.png)
+
+# + [markdown] slideshow={"slide_type": "subslide"}
+# ![](images/not_alone.gif)
+
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Acknowledgements
 #
@@ -275,11 +249,14 @@
 #
 
 
-# + [markdown] slideshow={"slide_type": "skip"} endofcell="--"
-# # Image attribution
-# - https://cnx.org/contents/FPtK1zmh@8.25:fEI3C8Ot@10/Preface, CC BY 4.0, https://commons.wikimedia.org/w/index.php?curid=30147912
-# -
-# --
+# + [markdown] slideshow={"slide_type": "slide"}
+# ### Shameless plug
+# # Please share our survey :D
+#
+# I'll put it in the OLS slack
 
+# + [markdown] slideshow={"slide_type": "slide"}
+# ![](images/logo_medium.png)
 
+# + slideshow={"slide_type": "skip"}
 
