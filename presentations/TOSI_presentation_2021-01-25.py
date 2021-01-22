@@ -18,18 +18,15 @@
 #
 # ![](images/logo_medium.png)
 #
-# Kendra Oudyk
-#
-# 2020-12-16 \
-# Final presentation for OLS-2
-#
-# <span style="color:gray">Twitter: @koudyk_ </span> \
-# <span style="color:gray">GitHub: koudyk/OSOH </span>
+# ## Creating a space for trainees to get regular help with doing open science.
 #
 #
+# **Kendra Oudyk**
+#
+# 2021-01-25
 #
 # + [markdown] slideshow={"slide_type": "slide"}
-# # Let's start with a story...
+# # Let's start with a story
 #
 
 # + [markdown] slideshow={"slide_type": "subslide"}
@@ -42,18 +39,21 @@
 # ![](images/story5.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# ![](images/story6b.png)
-
-# + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story7a2.png)
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ![](images/story7b2.png)
 
-# + [markdown] slideshow={"slide_type": "slide"}
+# + [markdown] slideshow={"slide_type": "subslide"}
 # # Vision
 #
-# OSOH is an online space where grad students can get regular help making their research more open.
+# OSOH will be a space for trainees to get regular help with doing open science.
+#
+
+# + [markdown] slideshow={"slide_type": "subslide"}
+# # Inspired by the Math Help Center
+# at McMaster University
+# ![](images/students_at_tables.jpeg)
 
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Milestones
@@ -61,7 +61,10 @@
 # - **Evaluate needs**
 # - Create documentation
 # - Find collaborators
-# - Request funding
+# - Get funding
+# - Hire and train TAs
+# - Start OSOH
+# - Re-evaluate after 1 year
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Survey
@@ -79,27 +82,17 @@
 # ## Barriers
 # ![](../survey/figures/barriers.png)
 
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h5> <img src="images/star.png"
-#   width="20"
-#   height="20"
-#   style="float:left;">
-#     Many have limited support
-
 # + [markdown] slideshow={"slide_type": "subslide"}
-# # Potential role of OSOH in light of the survey
+# # Potential role of OSOH 
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ![](images/open_science_buffet.png)
+# <font color='lightgrey'>(Credit to Christina Bergmann for the idea of the 'Open Science Buffet')</font>
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Expand the view of open science
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Link students to resources
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Offer support
+# - Link trainees to resources
+# - Help troubleshoot
+# - Offer support / community
 
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Milestones
@@ -107,7 +100,10 @@
 # - Evaluate needs
 # - **Create documentation**
 # - Find collaborators
-# - Request funding
+# - Get funding
+# - Hire and train TAs
+# - Start OSOH
+# - Re-evaluate after 1 year
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/github.png)
@@ -123,7 +119,10 @@
 # - Evaluate needs
 # - Create documentation
 # - **Find collaborators**
-# - Request funding
+# - Get funding
+# - Hire and train TAs
+# - Start OSOH
+# - Re-evaluate after 1 year
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/collaborators.png)
@@ -133,7 +132,10 @@
 # - Evaluate needs
 # - Create documentation
 # - Find collaborators
-# - **Request funding**
+# - **Get funding**
+# - Hire and train TAs
+# - Start OSOH
+# - Re-evaluate after 1 year
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Why we need funding
@@ -163,9 +165,10 @@
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # What's a reasonable hourly TA wage?
 
-# + [markdown] slideshow={"slide_type": "subslide"}
+# + [markdown] slideshow={"slide_type": "fragment"}
+#
 # ![](../survey/figures/ta_wages.png)
-# Info from www.glassdoor.ca
+# <font color='lightgrey'> Info from glassdoor.ca </font>
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # How much do we need?
@@ -173,10 +176,9 @@
 
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# ### Potential budget for 1 year:
 # ![](../survey/figures/ta_budget.png)
 #
-# Based on McGill's TA wage: \$29.33/hr
+# <font color='grey'> Based on McGill's TA wage: \$29.33/hr </font>
 
 
 # + [markdown] slideshow={"slide_type": "subslide"}
@@ -186,7 +188,8 @@
 # ### For overhead costs
 # - McGill PGSS Library Improvement Fund
 # - McGill Alumni Association's Student Sponsorship Program
-#
+
+# + [markdown] slideshow={"slide_type": "fragment"}
 # ### For collaborative events
 # - BrainHack School
 # - Tanenbaum Open Science Initiative
@@ -196,21 +199,21 @@
 # - Healthy Brains for Healthy Lives (McGill)
 
 # + [markdown] slideshow={"slide_type": "slide"}
-# # Next steps
+# # Next steps in our Milestones
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Meet with those planning similar initiatives
-
+# - Evaluate needs
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Get funding
+# - Create documentation - **finish website**
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Finish website
+# - Find collaborators - **discuss overlap**
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Find and Train TAs
+# - Get funding - **apply for particular funding, ask collaborators to sponsor by the week**
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Start OSOH in summer 2021 (after BrainHack School)
+# - Hire and train TAs - **look into Software Carpentries training**
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Re-assess after 1 year
-
+# - Start OSOH in summer 2021, after BrainHack School
+# + [markdown] slideshow={"slide_type": "fragment"}
+# - Re-evaluate after 1 year
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Let's change this story
 
@@ -223,6 +226,7 @@
 # + [markdown] slideshow={"slide_type": "slide"}
 # ![](images/logo_small.png)
 # # Acknowledgements
+# - Open Life Sciences mentorship program
 # - Andrew Stewart (my OLS mentor)
 # - Samuel Guay (Open Sicence UMontreal)
 # - Samuel Burke (Open Sicence UMontreal)
