@@ -70,23 +70,19 @@
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ### Limitations
-# - Small sample (34)
+# - Small sample (44)
 # - Biased sample (shared in the open-science community)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # What do you think of when you hear the words "open science"?
 # ![](../survey/figures/wc_first_thoughts.png)
 
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h5> <img src="images/star.png"
-#   width="20"
-#   height="20"
-#   style="float:left;">
-#     Narrow view of open science?
-
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Experience using and creating open science
 # ![](../survey/figures/experience.png)
+
+# + [markdown] slideshow={"slide_type": "subslide"}
+# ![](../survey/figures/intersections_use_create.png)
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # <h5> <img src="images/star.png"
@@ -124,13 +120,6 @@
 # + [markdown] slideshow={"slide_type": "fragment"}
 # # What was helpful?
 # ![](../survey/figures/wc_resources_that_helped.png)
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h6> <img src="images/star.png"
-#   width="20"
-#   height="30"
-#   style="float:left;">
-#     They want resources, and resources are out there.
-
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Potential role of OSOH in light of the survey
 
@@ -306,6 +295,13 @@
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Would you apply to host?
 # ![](../survey/figures/host.png)
+# + [markdown] slideshow={"slide_type": "skip"}
+# <h5> <img src="images/star.png"
+#   width="20"
+#   height="20"
+#   style="float:left;">
+#     Most are using open science and half would like to create it
 # -
+
 
 
