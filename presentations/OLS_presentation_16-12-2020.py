@@ -33,19 +33,11 @@
 #
 #
 # + [markdown] slideshow={"slide_type": "slide"}
-# # Vision
-#
-# OSOH is an online space where grad students can get regular help making their research more open.
-
-# + [markdown] slideshow={"slide_type": "slide"}
-# # Why I'm doing this
+# # Let's start with a story...
 #
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story1.png)
-
-# + [markdown] slideshow={"slide_type": "subslide"}
-# ![](images/story4_corr2.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story5.png)
@@ -76,65 +68,16 @@
 # # Survey
 # ![](images/survey_screenshot.png)
 
-# + [markdown] slideshow={"slide_type": "fragment"}
-# ### Limitations
-# - Small sample (34)
-# - Biased sample?
-
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # What do you think of when you hear the words "open science"?
 # ![](../survey/figures/wc_first_thoughts.png)
 
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h5> <img src="images/star.png"
-#   width="20"
-#   height="20"
-#   style="float:left;">
-#     Narrow view of open science?
-
 # + [markdown] slideshow={"slide_type": "subslide"}
-# ## What barriers do you face when trying to do open science?
+# ## Barriers
 # ![](../survey/figures/barriers.png)
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h5> <img src="images/star.png"
-#   width="20"
-#   height="20"
-#   style="float:left;">
-#     Almost no one is not convinced
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h5> <img src="images/star.png"
-#   width="20"
-#   height="20"
-#   style="float:left;">
-#     Many have limited supported
-
-# + [markdown] slideshow={"slide_type": "subslide"}
-# ### What would help you make your research more open?
-# ![](../survey/figures/resources_youd_like.png)
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# ### If you do open science, what kinds of resources did you find most useful?
-# ![](../survey/figures/wc_resources_that_helped.png)
-# + [markdown] slideshow={"slide_type": "fragment"}
-# <h6> <img src="images/star.png"
-#   width="20"
-#   height="30"
-#   style="float:left;">
-#     They want resources, and resources are out there. What's the barrier?
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Potential role of OSOH in light of the survey
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Expand the view of open science
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Offer support that they might not get in-lab
-
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Link students to resources
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ![](images/open_science_buffet.png)
@@ -178,16 +121,24 @@
 #
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Level the playing field for TA applicants
+# - 50% would 'maybe' volunteer
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# - But unpaid work is more accessible to those who can afford to volunteer
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# - There are already EDI issues in (open) science
+# (e.g., [2017 GitHub Open Source Survey](file:///tmp/mozilla_kendra0/github_survey_report.pdf))
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# ## What's a reasonable hourly TA wage?
-# ![](../survey/figures/ta_wages.png)
-# Info from www.glassdoor.ca
+# # How much do we need?
 
-# + [markdown] slideshow={"slide_type": "subslide"}
-# ## Budget projections
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+#
 # ![](../survey/figures/ta_budget.png)
+#
+# Wage: \$29.33/hr
 
 
 # + [markdown] slideshow={"slide_type": "subslide"}
@@ -196,9 +147,8 @@
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ### For overhead costs
 # - McGill PGSS Library Improvement Fund
-# - McGill Alumni Association student sponsorship program (\\$250 to \\$750)
-
-# + [markdown] slideshow={"slide_type": "fragment"}
+# - McGill Alumni Association student sponsorship program
+#
 # ### For collaborative events
 # - BrainHack School
 # - Tanenbaum Open Science Initiative
@@ -210,53 +160,49 @@
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Next steps
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Revisit vision in light of the survey
+# - Finalize what each meeting would look like
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Continue looking for funding 
+# - Get funding
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Finish website
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Find TAs
+# - Find and train TAs
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Develop leadership/teaching skills
+# - Start OSOH in Montreal in July 2021
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Start OSOH
-#   - July 2021 (after BrainHack School & OHBM Hackathon)
+# - Re-assess after 1 year
+
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Let's change this story
-
-# + [markdown] slideshow={"slide_type": "subslide"}
-# ![](images/story5.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story6b.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# ![](images/not_alone.gif)
+# ![](images/not_alone_pause.gif)
 
 # + [markdown] slideshow={"slide_type": "slide"}
+# # Please share our survey :D
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# on any email lists or social media that will reach grad students.
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# I'll put the link in the OLS slack.
+
+# + [markdown] slideshow={"slide_type": "slide"}
+# ![](images/logo_small.png)
 # # Acknowledgements
-#
-# Thanks to many people who helped create and share the survey, notably:
 # - Andrew Stewart (my OLS mentor)
 # - Samuel Guay (Open Sicence UMontreal)
 # - Samuel Burke (Open Sicence UMontreal)
+# - Aleksandra Nenadic (Software Carpentry)
 # - Pierre Bellec (BrainHack)
 # - Dylan Roskams-Edris (Tanenbaum Open Science Institute)
+# - Patrick Bermudez (Canadian Open Neuroscience Platform)
 # - My labmates
 # - John Oudyk
-#
-
-
-# + [markdown] slideshow={"slide_type": "slide"}
-# ### Shameless plug
-# # Please share our survey :D
-#
-# I'll put it in the OLS slack
-
-# + [markdown] slideshow={"slide_type": "slide"}
-# ![](images/logo_medium.png)
 
 # + slideshow={"slide_type": "skip"}
 
