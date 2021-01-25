@@ -22,9 +22,6 @@
 #
 #
 # **Kendra Oudyk**
-#
-# 2021-01-25
-#
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Let's start with a story
 #
