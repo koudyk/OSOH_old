@@ -18,7 +18,7 @@
 #
 # ![](images/logo_medium.png)
 #
-# ## Creating a space for trainees to get regular help with doing open science.
+# ### Creating a space for graduate students to get regular help with doing open science.
 #
 #
 # **Kendra Oudyk**
@@ -39,6 +39,9 @@
 # ![](images/story5.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
+# ![](images/story6b.png)
+
+# + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story7a2.png)
 
 # + [markdown] slideshow={"slide_type": "fragment"}
@@ -47,7 +50,7 @@
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Vision
 #
-# OSOH will be a space for trainees to get regular help with doing open science.
+# OSOH will be a space for graduate students to get regular help with doing open science.
 #
 
 # + [markdown] slideshow={"slide_type": "subslide"}
@@ -70,17 +73,27 @@
 # # Survey
 # ![](images/survey_screenshot.png)
 
+# + [markdown] slideshow={"slide_type": "fragment"}
+# ## Limitations
+# - Small sample (44)
+# - Biased sample?
+
+# + [markdown] slideshow={"slide_type": "subslide"}
+# # Experience using and creating open science
+# ![](../survey/figures/experience.png)
+#
+# n = 44
+
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # What do you think of when you hear the words "open science"?
 # ![](../survey/figures/wc_first_thoughts.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
-# # Experience using and creating open science
-# ![](../survey/figures/experience.png)
-
-# + [markdown] slideshow={"slide_type": "subslide"}
 # ## Barriers
 # ![](../survey/figures/barriers.png)
+
+# + [markdown] slideshow={"slide_type": "fragment"}
+# "**Limited support** - My colleagues and/or supervisors don't think that open science is a priority"
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # # Potential role of OSOH 
@@ -107,11 +120,6 @@
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/github.png)
-
-# + [markdown] slideshow={"slide_type": "subslide"}
-# # Website
-#
-# In progress...
 
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Milestones
@@ -148,7 +156,7 @@
 # - But unpaid work is more accessible to those who can afford to volunteer
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - There are already EDI issues in science & even in open science
+# - There are already issues with Equity, Diversity, & Inclusion in science & even in open science
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 #   - E.g., the [2017 GitHub Open Source Survey](file:///tmp/mozilla_kendra0/github_survey_report.pdf) reports that the majority (>70%) of open-source contributers are 
@@ -202,14 +210,11 @@
 # # Next steps in our Milestones
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Evaluate needs
+# - Create documentation
+# - Find collaborators
+# - Get funding
 # + [markdown] slideshow={"slide_type": "fragment"}
-# - Create documentation - **finish website**
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Find collaborators - **discuss overlap**
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Get funding - **apply for particular funding, ask collaborators to sponsor by the week**
-# + [markdown] slideshow={"slide_type": "fragment"}
-# - Hire and train TAs - **look into Software Carpentries training**
+# - Hire and train TAs - look into Software Carpentries training
 # + [markdown] slideshow={"slide_type": "fragment"}
 # - Start OSOH in summer 2021, after BrainHack School
 # + [markdown] slideshow={"slide_type": "fragment"}
@@ -217,7 +222,7 @@
 # + [markdown] slideshow={"slide_type": "slide"}
 # # Let's change this story
 
-# + [markdown] slideshow={"slide_type": "skip"}
+# + [markdown] slideshow={"slide_type": "subslide"}
 # ![](images/story6b.png)
 
 # + [markdown] slideshow={"slide_type": "subslide"}
